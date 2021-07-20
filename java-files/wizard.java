@@ -95,8 +95,8 @@ public class wizard extends JFrame implements ActionListener
 	private void setNonOSPaths(){
 		//set all of the necessary system paths we need for file transfer, OS Specific ones are handled by a different helper method. 
 		//we create a lot of backup paths and do a lot of testing since we're handling file deletion/copying. I don't want to delete someone's important documents by accident!
-		modPath = Paths.get(FileSystems.getDefault().getPath(".").toAbsolutePath() +"/AOE3DE-Overhauled");
-		deleteCheckPath = Paths.get(currentPath +"AOE3DE-Overhauled/Data/deletecheck.file");
+		modPath = Paths.get(FileSystems.getDefault().getPath(".").toAbsolutePath() +"/mod-files");
+		deleteCheckPath = Paths.get(currentPath +"/mod-files/AOE3DE-Overhauled/Data/deletecheck.file");
 	}
 
 	private void setDefaultOSDirectory(){
@@ -161,6 +161,7 @@ public class wizard extends JFrame implements ActionListener
 			System.out.println("This current path is:" + currentPath);
 			System.out.println("Test path is:" + testPath);
 			System.out.println("Mod path is:" + modPath);
+			System.out.println("Delete path is:" + deleteCheckPath); 
 				//make sure that the user is in the right path to copy the files, and not somewhere else
 			if (currentPath.toString().equals(testPath.toString()) == false)
 				System.out.println("it didn't work! You're probably not in the right directory."); 
@@ -197,6 +198,7 @@ public class wizard extends JFrame implements ActionListener
 			System.out.println("This current path is:" + currentPath);
 			System.out.println("Test path is:" + testPath);
 			System.out.println("Mod path is:" + modPath);
+			System.out.println("Delete path is:" + deleteCheckPath); 
 			//make sure that the user is in the right path to copy the files, and not somewhere else
 			if (currentPath.toString().equals(testPath.toString()) == false)
 				System.out.println("it didn't work! You're probably in the wrong directory!"); 
