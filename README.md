@@ -3,7 +3,7 @@
 This program is a basic mod manager for Age of Empires 3: Definitive Edition. It allows you to install and manage your installed mods from outside of the game, without the need to restart. This application requires Java 8 to be installed on your computer at the minimum and works on Linux and Windows (MacOS is not a supported platform currently). I have provided dummy files to create and test out the mod manager in action 
 
 <img
-src="https://github.com/kck130030/Age-Of-Empires-3-DE-Mod-Manager/blob/master/AOE3DEInstaller.png">
+src="https://github.com/kck130030/Age-Of-Empires-3-DE-Mod-Manager/blob/master/Aoe3DEInstaller.png">
 
 <b>Installation:</b>
 
