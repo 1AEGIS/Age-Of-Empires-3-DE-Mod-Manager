@@ -96,7 +96,7 @@ public class wizard extends JFrame implements ActionListener
 		//set all of the necessary system paths we need for file transfer, OS Specific ones are handled by a different helper method. 
 		//we create a lot of backup paths and do a lot of testing since we're handling file deletion/copying. I don't want to delete someone's important documents by accident!
 		modPath = Paths.get(FileSystems.getDefault().getPath(".").toAbsolutePath() +"/mod-files");
-		deleteCheckPath = Paths.get(currentPath +"/mod-files/AOE3DE-Overhauled/Data/deletecheck.file");
+		deleteCheckPath = Paths.get(currentPath +"/AOE3DE-Overhauled/Data/deletecheck.file");
 	}
 
 	private void setDefaultOSDirectory(){
@@ -114,7 +114,7 @@ public class wizard extends JFrame implements ActionListener
 			//currently currentPath is hardcoded, this can be changed in the future to allow users to point to a specific directory
 			testPath = Paths.get(home + "Games/Age of Empires 3 DE/" + currentPathChildList[0] + "mods/local");
 			//The backup will be saved in the user's home directory by default
-			backupPath = Paths.get(home + "Game/MODBAK"); 
+			backupPath = Paths.get(home + "Documents/MODBAK"); 
 
 
 		}
@@ -195,10 +195,11 @@ public class wizard extends JFrame implements ActionListener
 	private void removeModLogic(){
 			//Helper method to remove the installed files from the mod. 
 			//Before we delete anything, a backup of the current files are made to ensure that we have a restore point. 
-			System.out.println("This current path is:" + currentPath);
+			System.out.println("Current path is:" + currentPath);
 			System.out.println("Test path is:" + testPath);
 			System.out.println("Mod path is:" + modPath);
 			System.out.println("Delete path is:" + deleteCheckPath); 
+			System.out.println();
 			//make sure that the user is in the right path to copy the files, and not somewhere else
 			if (currentPath.toString().equals(testPath.toString()) == false)
 				System.out.println("it didn't work! You're probably in the wrong directory!"); 
@@ -207,9 +208,12 @@ public class wizard extends JFrame implements ActionListener
 				if (Files.exists(deleteCheckPath) && Files.isRegularFile(deleteCheckPath))
 					try
 					{
+						System.out.println("Does the delete file exist: " + Files.exists(deleteCheckPath)); 
+						System.out.println("Is the test file a regular file: " +  Files.isRegularFile(deleteCheckPath));
 					//delete the modified directory and replace it with the default one
 						JOptionPane.showMessageDialog(null, "File Restore has started, this may take a little while. \n Click on OK to proceed.", "Message", JOptionPane.INFORMATION_MESSAGE); 
-            					deleteDirectoryJava8(currentPath.toString() + "AOE3DE-Overhauled");
+            					deleteDirectoryJava8(currentPath.toString() + "/AOE3DE-Overhauled");
+						System.out.println("done deleting, check your mod path to confirm it's gone"); 
 						copyDirectoryFileVisitor(backupPath.toString(), currentPath.toString());
 						JOptionPane.showMessageDialog(null, "File Restore has completed", "Message", JOptionPane.INFORMATION_MESSAGE); 
 
