@@ -1,6 +1,3 @@
-//special thanks to Derek Banas' youtube tutorials, mkyong's recursive file copying, Nambi's image drawing, and Oracle's documentation 
-// https://stackoverflow.com/questions/18777893/jframe-background-image for putting on background image. 
-
 import java.awt.event.*; 
 import javax.swing.*; 
 import java.nio.file.*;
@@ -96,7 +93,7 @@ public class wizard extends JFrame implements ActionListener
 		//set all of the necessary system paths we need for file transfer, OS Specific ones are handled by a different helper method. 
 		//we create a lot of backup paths and do a lot of testing since we're handling file deletion/copying. I don't want to delete someone's important documents by accident!
 		modPath = Paths.get(FileSystems.getDefault().getPath(".").toAbsolutePath() +"/mod-files");
-		deleteCheckPath = Paths.get(currentPath +"/AOE3DE-Overhauled/Data/deletecheck.file");
+		deleteCheckPath = Paths.get(currentPath +"/AOE3DE-Overhauled/deletecheck.file");
 	}
 
 	private void setDefaultOSDirectory(){
@@ -110,9 +107,16 @@ public class wizard extends JFrame implements ActionListener
 			System.out.println("User's current OS is a Windows variant, setting default directory");
 			currentPathSubDirs = new File(home + "Games/Age of Empires 3 DE");
 			currentPathChildList = currentPathSubDirs.list(); 
-			currentPath = Paths.get(home + "Games/Age of Empires 3 DE/" + currentPathChildList[0] + "/mods/local");
+			String pathChecker = "";
+			for ( String s : currentPathChildList) {
+				if (Character.isDigit(s.charAt(0))) {
+					pathChecker = s; 
+				}
+			}
+			System.out.println("pathChecker: " + pathChecker);
+			currentPath = Paths.get(home + "Games/Age of Empires 3 DE/" + pathChecker + "/mods/local");
 			//currently currentPath is hardcoded, this can be changed in the future to allow users to point to a specific directory
-			testPath = Paths.get(home + "Games/Age of Empires 3 DE/" + currentPathChildList[0] + "mods/local");
+			testPath = Paths.get(home + "Games/Age of Empires 3 DE/" + pathChecker + "mods/local");
 			//The backup will be saved in the user's home directory by default
 			backupPath = Paths.get(home + "Documents/MODBAK"); 
 
@@ -123,8 +127,15 @@ public class wizard extends JFrame implements ActionListener
 			System.out.println("User's current OS is a Linux variant, setting default directory"); 
 			currentPathSubDirs = new File(home + "/.local/share/Steam/steamapps/compatdata/933110/pfx/drive_c/users/steamuser/Games/Age of Empires 3 DE"); 
 			currentPathChildList = currentPathSubDirs.list(); 
-			currentPath = Paths.get(home + "/.local/share/Steam/steamapps/compatdata/933110/pfx/drive_c/users/steamuser/Games/Age of Empires 3 DE/" + currentPathChildList[0] + "/mods/local"); 
-			testPath = Paths.get(home + "/.local/share/Steam/steamapps/compatdata/933110/pfx/drive_c/users/steamuser/Games/Age of Empires 3 DE/" + currentPathChildList[0] + "/mods/local"); 
+			String pathChecker = "";
+			for ( String s : currentPathChildList) {
+				if (Character.isDigit(s.charAt(0))) {
+					pathChecker = s; 
+				}
+			}
+			System.out.println("pathChecker: " + pathChecker);
+			currentPath = Paths.get(home + "/.local/share/Steam/steamapps/compatdata/933110/pfx/drive_c/users/steamuser/Games/Age of Empires 3 DE/" + pathChecker + "/mods/local"); 
+			testPath = Paths.get(home + "/.local/share/Steam/steamapps/compatdata/933110/pfx/drive_c/users/steamuser/Games/Age of Empires 3 DE/" + pathChecker + "/mods/local"); 
 			backupPath = Paths.get(home + "/Documents/MODBAK"); 
 		}
 	}
@@ -275,10 +286,7 @@ public class wizard extends JFrame implements ActionListener
 }
 
 
-
-
-
-
-
+//special thanks to Derek Banas' youtube tutorials, mkyong's recursive file copying, Nambi's image drawing, and Oracle's documentation 
+// https://stackoverflow.com/questions/18777893/jframe-background-image for putting on background image. 
 
 
