@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 import java.util.Comparator;
 import java.util.stream.Stream;
 
-public class wizard extends JFrame implements ActionListener
+public class Wizard extends JFrame implements ActionListener
 {
 	//class variables to store paths to game files and construct the GUI.
 	private String versionNum; 
@@ -34,11 +34,11 @@ public class wizard extends JFrame implements ActionListener
 
 	public static void main(String[] args){
 	//launches the application windows
-		new wizard(); 
+		new Wizard(); 
 	}
 
 	//constructor that launchers helper methods to create the GUI experience.
-	public wizard(){
+	public Wizard(){
 		setDefaultOSDirectory(); 
 		setNonOSPaths(); 
 		instantiateFields(); 
@@ -93,7 +93,7 @@ public class wizard extends JFrame implements ActionListener
 		//set all of the necessary system paths we need for file transfer, OS Specific ones are handled by a different helper method. 
 		//we create a lot of backup paths and do a lot of testing since we're handling file deletion/copying. I don't want to delete someone's important documents by accident!
 		modPath = Paths.get(FileSystems.getDefault().getPath(".").toAbsolutePath() +"/mod-files");
-		deleteCheckPath = Paths.get(currentPath +"/AOE3DE-Overhauled/deletecheck.file");
+		deleteCheckPath = Paths.get(currentPath +"/test-mod/deletecheck.file");
 	}
 
 	private void setDefaultOSDirectory(){
